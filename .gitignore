@@ -1,0 +1,8 @@
+# CSharp folder
+CSharp/.vscode
+CSharp/bin/
+CSharp/obj
+
+# Javascript folder
+js/node_modules/
+js/package-lock.json

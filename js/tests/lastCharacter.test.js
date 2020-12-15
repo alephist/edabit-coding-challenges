@@ -14,7 +14,7 @@ const data = [
 describe("modifyLast", () => {
   describe("Return string with last character repeated n times", () => {
     test.each(data)("modifyLast(%p, %i) = %p", (str, n, result) => {
-      var actual = modifyLast(str, n);
+      let actual = modifyLast(str, n);
 
       expect(actual).toEqual(result);
     });

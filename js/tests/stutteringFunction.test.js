@@ -9,7 +9,7 @@ const data = [
 describe("stutter", () => {
   describe("Return stuttered string", () => {
     test.each(data)("stutter(%p) = %p", (word, result) => {
-      var actual = stutter(word);
+      let actual = stutter(word);
 
       expect(actual).toEqual(result);
     });

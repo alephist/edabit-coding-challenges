@@ -13,7 +13,7 @@ describe("shouldServeDrinks", () => {
     test.each(data)(
       "shouldServeDrinks(%i, %s) = %s",
       (age, onBreak, expected) => {
-        var actual = shouldServeDrinks(age, onBreak);
+        let actual = shouldServeDrinks(age, onBreak);
 
         expect(actual).toEqual(expected);
       }

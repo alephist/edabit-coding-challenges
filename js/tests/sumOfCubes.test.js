@@ -15,7 +15,7 @@ const data = [
 describe("getSum", () => {
   describe("Return sum of cubed elements from array", () => {
     test.each(data)("getSum(%p) = %i", (arr, result) => {
-      var actual = getSum(arr);
+      let actual = getSum(arr);
 
       expect(actual).toEqual(result);
     });

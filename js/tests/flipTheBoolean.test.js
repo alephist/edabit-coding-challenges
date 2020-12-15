@@ -8,7 +8,7 @@ describe("reverse", () => {
     ];
 
     test.each(data)("reverse(%s) = %s", (bool, expected) => {
-      var actual = reverse(bool);
+      let actual = reverse(bool);
 
       expect(actual).toEqual(expected);
     });
@@ -18,7 +18,7 @@ describe("reverse", () => {
     const data = [0, null, undefined, {}];
 
     test.each(data)("reverse(%o) = 'boolean expected'", (bool) => {
-      var actual = reverse(bool);
+      let actual = reverse(bool);
 
       expect(actual).toEqual("boolean expected");
     });
@@ -35,7 +35,7 @@ describe("flipBool", () => {
     ];
 
     test.each(data)("flipBool(%s) = %s", (bool, expected) => {
-      var actual = flipBool(bool);
+      let actual = flipBool(bool);
 
       expect(actual).toEqual(expected);
     });

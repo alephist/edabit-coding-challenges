@@ -5,7 +5,7 @@ describe("isDivisibleBy5", () => {
     const data = [5, 15];
 
     test.each(data)("isDivisibleBy5(%i) = true", (num) => {
-      var actual = isDivisibleBy5(num);
+      let actual = isDivisibleBy5(num);
 
       expect(actual).toEqual(true);
     });
@@ -15,7 +15,7 @@ describe("isDivisibleBy5", () => {
     const data = [7, 33, -18, 999, 2];
 
     test.each(data)("isDivisibleBy5(%i) = false", (num) => {
-      var actual = isDivisibleBy5(num);
+      let actual = isDivisibleBy5(num);
 
       expect(actual).toEqual(false);
     });

@@ -9,7 +9,7 @@ const data = [
 describe("findPerimeter", () => {
   describe("Return rectangle perimeter from given length and width", () => {
     test.each(data)("2(%i) + 2(%i) = %i", (length, width, perimeter) => {
-      var actual = findPerimeter(length, width);
+      let actual = findPerimeter(length, width);
 
       expect(actual).toEqual(perimeter);
     });

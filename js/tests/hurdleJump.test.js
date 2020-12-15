@@ -13,7 +13,7 @@ const data = [
 describe("jump", () => {
   describe("Return boolean if hurdler can clear all hurdles", () => {
     test.each(data)("jump(%p, %i) = %s", (hurdles, jumpHeight, result) => {
-      var actual = jump(hurdles, jumpHeight);
+      let actual = jump(hurdles, jumpHeight);
 
       expect(actual).toEqual(result);
     });

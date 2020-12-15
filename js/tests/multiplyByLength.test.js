@@ -19,7 +19,7 @@ const data = [
 describe("multiplyLength", () => {
   describe("Return array with each element multiplied by array length", () => {
     test.each(data)("multiplyLength(%p) = %p", (arr, result) => {
-      var actual = multiplyLength(arr);
+      let actual = multiplyLength(arr);
 
       expect(actual).toEqual(result);
     });

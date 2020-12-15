@@ -21,7 +21,7 @@ const data = [
 describe("concat", () => {
   describe("Concatenate two arrays", () => {
     test.each(data)("concat(%p, %p) = %p", (arr1, arr2, result) => {
-      var actual = concat(arr1, arr2);
+      let actual = concat(arr1, arr2);
 
       expect(actual).toEqual(result);
     });

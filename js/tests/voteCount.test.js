@@ -11,7 +11,7 @@ const data = [
 describe("getVoteCount", () => {
   describe("Return difference of upvotes and downvotes", () => {
     test.each(data)("getVoteCount(%p) = %i", (votes, expected) => {
-      var actual = getVoteCount(votes);
+      let actual = getVoteCount(votes);
 
       expect(actual).toEqual(expected);
     });

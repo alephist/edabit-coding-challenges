@@ -15,7 +15,7 @@ const data = [
 describe("addEnding", () => {
   describe("Add string ending to each member of an array", () => {
     test.each(data)("addEnding(%p, %p) = %p", (arr, ending, expected) => {
-      var actual = addEnding(arr, ending);
+      let actual = addEnding(arr, ending);
 
       expect(actual).toEqual(expected);
     });

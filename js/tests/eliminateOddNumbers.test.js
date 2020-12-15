@@ -40,7 +40,7 @@ const data = [
 describe("noOdds", () => {
   describe("Return array with only even values", () => {
     test.each(data)("noOdds(%p) = %p", (arr, result) => {
-      var actual = noOdds(arr);
+      let actual = noOdds(arr);
 
       expect(actual).toEqual(result);
     });

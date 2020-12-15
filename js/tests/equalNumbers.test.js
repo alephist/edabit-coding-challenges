@@ -9,7 +9,7 @@ describe("isEqual", () => {
     ];
 
     test.each(data)("%i == %i", (num1, num2) => {
-      var actual = isEqual(num1, num2);
+      let actual = isEqual(num1, num2);
 
       expect(actual).toEqual(true);
     });
@@ -22,7 +22,7 @@ describe("isEqual", () => {
     ];
 
     test.each(data)("%i != %i", (num1, num2) => {
-      var actual = isEqual(num1, num2);
+      let actual = isEqual(num1, num2);
 
       expect(actual).toEqual(false);
     });
@@ -36,7 +36,7 @@ describe("isEqual", () => {
     ];
 
     test.each(data)("%i != %i", (num1, num2) => {
-      var actual = isEqual(num1, num2);
+      let actual = isEqual(num1, num2);
 
       expect(actual).toEqual(false);
     });

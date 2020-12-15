@@ -12,7 +12,7 @@ describe("animals", () => {
     test.each(data)(
       "Chickens: %i, Cows: %i, Pigs: %i, Total legs: %i",
       (chickens, cows, pigs, total) => {
-        var actual = animals(chickens, cows, pigs);
+        let actual = animals(chickens, cows, pigs);
 
         expect(actual).toEqual(total);
       }

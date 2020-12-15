@@ -11,7 +11,7 @@ const data = [
 describe("timeForMilkAndCookies", () => {
   describe("Return true of it is Christmas Eve or not", () => {
     test.each(data)("timeForMilkAndCookies(%o) = %o", (date, expected) => {
-      var actual = timeForMilkAndCookies(date);
+      let actual = timeForMilkAndCookies(date);
 
       expect(actual).toEqual(expected);
     });

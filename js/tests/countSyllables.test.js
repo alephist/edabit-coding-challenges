@@ -14,7 +14,7 @@ const data = [
 describe("count", () => {
   describe("Return number of syllables", () => {
     test.each(data)("count(%p) = %i", (word, result) => {
-      var actual = count(word);
+      let actual = count(word);
 
       expect(actual).toEqual(result);
     });

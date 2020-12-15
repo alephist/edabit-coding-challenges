@@ -16,7 +16,7 @@ const data = [
 describe("doubleChar", () => {
   describe("Return string with characters reapeated once", () => {
     test.each(data)("doubleChar(%p) = %p", (str, result) => {
-      var actual = doubleChar(str);
+      let actual = doubleChar(str);
 
       expect(actual).toEqual(result);
     });

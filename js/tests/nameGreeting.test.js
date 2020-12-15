@@ -10,7 +10,7 @@ const data = [
 describe("helloName", () => {
   describe("Return a greeting from name input", () => {
     test.each(data)("Input: %s, Output: %s", (name, expected) => {
-      var actual = helloName(name);
+      let actual = helloName(name);
 
       expect(actual).toEqual(expected);
     });

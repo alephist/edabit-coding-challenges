@@ -10,7 +10,7 @@ const data = [
 describe("search", () => {
   describe("Return index of a given item", () => {
     test.each(data)("search(%p, %i) = %i", (arr, item, index) => {
-      var actual = search(arr, item);
+      let actual = search(arr, item);
 
       expect(actual).toEqual(index);
     });

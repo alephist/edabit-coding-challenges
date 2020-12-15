@@ -10,7 +10,7 @@ const data = [
 describe("getRemainder", () => {
   describe("Get remainder from two numbers", () => {
     test.each(data)("%i % %i = %i", (x, y, remainder) => {
-      var actual = getRemainder(x, y);
+      let actual = getRemainder(x, y);
 
       expect(actual).toEqual(remainder);
     });

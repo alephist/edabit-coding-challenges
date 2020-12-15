@@ -12,7 +12,7 @@ const data = [
 describe("totalCups", () => {
   describe("Return total number of cups for every 6 cups ordered", () => {
     test.each(data)("totalCups(%i) = %i", (n, expected) => {
-      var actual = totalCups(n);
+      let actual = totalCups(n);
 
       expect(actual).toEqual(expected);
     });

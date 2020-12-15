@@ -12,7 +12,7 @@ const data = [
 describe("countWords", () => {
   describe("Takes input string and return word count", () => {
     test.each(data)("countWords(%p) = %i", (str, expected) => {
-      var actual = countWords(str);
+      let actual = countWords(str);
 
       expect(actual).toEqual(expected);
     });

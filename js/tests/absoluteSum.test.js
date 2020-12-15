@@ -11,7 +11,7 @@ const data = [
 describe("getAbsoluteSum", () => {
   describe("Return sum of absolute value of each element", () => {
     test.each(data)("getAbsoluteSum(%p) = %i", (arr, result) => {
-      var actual = getAbsoluteSum(arr);
+      let actual = getAbsoluteSum(arr);
 
       expect(actual).toEqual(result);
     });

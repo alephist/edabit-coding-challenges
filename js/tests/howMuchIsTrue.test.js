@@ -116,7 +116,7 @@ const data = [
 describe("countTrue", () => {
   describe("Return number of true values", () => {
     test.each(data)("countTrue(%p) = %i", (arr, expected) => {
-      var actual = countTrue(arr);
+      let actual = countTrue(arr);
 
       expect(actual).toEqual(expected);
     });

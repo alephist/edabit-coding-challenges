@@ -10,7 +10,7 @@ const data = [
 describe("isSafeBridge", () => {
   describe("Return boolean if bridge is safe to cross", () => {
     test.each(data)("isSafeBridge(%p) = %s", (str, expected) => {
-      var actual = isSafeBridge(str);
+      let actual = isSafeBridge(str);
 
       expect(actual).toEqual(expected);
     });

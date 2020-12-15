@@ -27,7 +27,7 @@ const data = [
 describe("reverse", () => {
   describe("Reverse an array", () => {
     test.each(data)("reverse(%p) = %p", (arr, expected) => {
-      var actual = reverse(arr);
+      let actual = reverse(arr);
 
       expect(actual).toEqual(expected);
     });

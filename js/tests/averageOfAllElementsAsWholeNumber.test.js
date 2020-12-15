@@ -12,7 +12,7 @@ const data = [
 describe("isAvgWhole", () => {
   describe("Return boolean if average of all elements is a whole number", () => {
     test.each(data)("isAvgWhole(%p) = %s", (arr, result) => {
-      var actual = isAvgWhole(arr);
+      let actual = isAvgWhole(arr);
 
       expect(actual).toEqual(result);
     });

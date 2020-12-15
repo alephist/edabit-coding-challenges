@@ -12,7 +12,7 @@ const data = [
 describe("check", () => {
   describe("Return boolean if an array contains a particular number", () => {
     test.each(data)("check(%p, %i) = %s", (arr, item, expected) => {
-      var actual = check(arr, item);
+      let actual = check(arr, item);
 
       expect(actual).toEqual(expected);
     });

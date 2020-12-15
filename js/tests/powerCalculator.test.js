@@ -9,7 +9,7 @@ const data = [
 describe("circuitPower", () => {
   describe("Calculate power using given voltage and current values", () => {
     test.each(data)("%i x %i = %i", (voltage, current, power) => {
-      var actualPower = circuitPower(voltage, current);
+      let actualPower = circuitPower(voltage, current);
 
       expect(actualPower).toEqual(power);
     });

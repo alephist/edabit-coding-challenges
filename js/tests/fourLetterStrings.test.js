@@ -24,7 +24,7 @@ const data = [
 describe("isFourLetters", () => {
   describe("Return array with words having 4 letters", () => {
     test.each(data)("isFourLetters(%p) = %p", (arr, result) => {
-      var actual = isFourLetters(arr);
+      let actual = isFourLetters(arr);
 
       expect(actual).toEqual(result);
     });

@@ -8,7 +8,7 @@ const data = [
 describe("diffMaxMin", () => {
   describe("Return difference of biggest and smallest numbers from an array", () => {
     test.each(data)("diffMaxMin(%p) = %i", (arr, expected) => {
-      var actual = diffMaxMin(arr);
+      let actual = diffMaxMin(arr);
 
       expect(actual).toEqual(expected);
     });

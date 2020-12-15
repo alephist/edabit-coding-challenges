@@ -26,7 +26,7 @@ const data = [
 describe("sumIsLessThan100", () => {
   describe("Check if sum of two numbers is less than 100", () => {
     test.each(data)("Sum of %i + %i is less than 100", (a, b, expected) => {
-      var actual = sumIsLessThan100(a, b);
+      let actual = sumIsLessThan100(a, b);
 
       expect(actual).toEqual(expected);
     });

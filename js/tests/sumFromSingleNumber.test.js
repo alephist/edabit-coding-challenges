@@ -21,7 +21,7 @@ const data = [
 describe("addUp", () => {
   describe("Return sum from 1 to number passed", () => {
     test.each(data)("addUp(%i) = %i", (num, result) => {
-      var actual = addUp(num);
+      let actual = addUp(num);
 
       expect(actual).toEqual(result);
     });

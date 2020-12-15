@@ -15,7 +15,7 @@ const data = [
 describe("checkPalindrome", () => {
   describe("Return boolean if word is a palindrome", () => {
     test.each(data)("checkPalindrome(%p) = %s", (str, result) => {
-      var actual = checkPalindrome(str);
+      let actual = checkPalindrome(str);
 
       expect(actual).toEqual(result);
     });

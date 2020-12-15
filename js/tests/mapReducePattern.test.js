@@ -10,7 +10,7 @@ const data = [
 describe("getMagnitude", () => {
   describe("Return magnitude of vector", () => {
     test.each(data)("getMagnitude(%p) = %p", (vector, result) => {
-      var actual = getMagnitude(vector);
+      let actual = getMagnitude(vector);
 
       expect(actual).toEqual(result);
     });

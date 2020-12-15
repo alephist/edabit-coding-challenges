@@ -26,7 +26,7 @@ describe("dividesEvenly", () => {
     ];
 
     test.each(data)("dividesEvenly(%i, %i) = %o", (a, b, expected) => {
-      var actual = dividesEvenly(a, b);
+      let actual = dividesEvenly(a, b);
 
       expect(actual).toEqual(expected);
     });

@@ -34,7 +34,7 @@ const data = [
 describe("firstLast", () => {
   describe("Return the first and last elements in a new array", () => {
     test.each(data)("firstLast(%p) = %p", (arr, expected) => {
-      var actual = firstLast(arr);
+      let actual = firstLast(arr);
 
       expect(actual).toEqual(expected);
     });

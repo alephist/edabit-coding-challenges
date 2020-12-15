@@ -10,7 +10,7 @@ describe("toInt", () => {
     ];
 
     test.each(data)("toInt(%p) = %i", (str, expected) => {
-      var actual = toInt(str);
+      let actual = toInt(str);
 
       expect(actual).toEqual(expected);
     });
@@ -27,7 +27,7 @@ describe("toStr", () => {
     ];
 
     test.each(data)("toStr(%i) = %p", (num, expected) => {
-      var actual = toStr(num);
+      let actual = toStr(num);
 
       expect(actual).toEqual(expected);
     });

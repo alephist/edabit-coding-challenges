@@ -10,7 +10,7 @@ const data = [
 describe("repeat", () => {
   describe("Return string with repeated charcters nth times", () => {
     test.each(data)("repeat(%p, %i) = %p", (str, num, result) => {
-      var actual = repeat(str, num);
+      let actual = repeat(str, num);
 
       expect(actual).toEqual(result);
     });

@@ -9,7 +9,7 @@ describe("compare", () => {
     ];
 
     test.each(data)("compare(%s, %s) = true", (str1, str2) => {
-      var actual = compare(str1, str2);
+      let actual = compare(str1, str2);
 
       expect(actual).toEqual(true);
     });
@@ -24,7 +24,7 @@ describe("compare", () => {
     ];
 
     test.each(data)("compare(%s, %s) = false", (str1, str2) => {
-      var actual = compare(str1, str2);
+      let actual = compare(str1, str2);
 
       expect(actual).toEqual(false);
     });

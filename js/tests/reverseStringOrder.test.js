@@ -43,7 +43,7 @@ const data = [
 describe("reverse", () => {
   describe("Return string in reverse order", () => {
     test.each(data)("reverse(%p) = %p", (str, result) => {
-      var actual = reverse(str);
+      let actual = reverse(str);
 
       expect(actual).toEqual(result);
     });

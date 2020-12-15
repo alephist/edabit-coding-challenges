@@ -26,7 +26,7 @@ const data = [
 describe("uniqueSort", () => {
   describe("Returns an array with unique elements and sorted from least to greatest", () => {
     test.each(data)("uniqueSort(%p) = %p", (arr, result) => {
-      var actual = uniqueSort(arr);
+      let actual = uniqueSort(arr);
 
       expect(actual).toEqual(result);
     });

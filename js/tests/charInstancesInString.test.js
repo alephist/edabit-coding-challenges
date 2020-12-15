@@ -14,7 +14,7 @@ const data = [
 describe("charCount", () => {
   describe("Return number of times the character is found in string", () => {
     test.each(data)("charCount(%p, %p) = %i", (myChar, str, result) => {
-      var actual = charCount(myChar, str);
+      let actual = charCount(myChar, str);
 
       expect(actual).toEqual(result);
     });

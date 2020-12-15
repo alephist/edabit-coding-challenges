@@ -21,7 +21,7 @@ const data = [
 describe("getDays", () => {
   describe("Return number of days in a particular month and year", () => {
     test.each(data)("getDays(%i, %i) = %i", (month, year, expected) => {
-      var actual = getDays(month, year);
+      let actual = getDays(month, year);
 
       expect(actual).toEqual(expected);
     });

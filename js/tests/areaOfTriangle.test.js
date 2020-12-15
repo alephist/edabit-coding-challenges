@@ -11,7 +11,7 @@ const data = [
 describe("getArea", () => {
   describe("Calculate area of triangle using given base and height values", () => {
     test.each(data)("(%i x %i) / 2 = %i", (base, height, area) => {
-      var actual = getArea(base, height);
+      let actual = getArea(base, height);
 
       expect(actual).toEqual(area);
     });

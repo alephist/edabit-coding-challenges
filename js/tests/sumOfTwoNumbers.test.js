@@ -8,7 +8,7 @@ const data = [
 ];
 
 test.each(data)("Add %i + %i", (a, b, expected) => {
-  var actual = addition(a, b);
+  let actual = addition(a, b);
 
   expect(actual).toBe(expected);
 });

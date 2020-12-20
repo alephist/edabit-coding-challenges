@@ -1,0 +1,75 @@
+using Xunit;
+
+namespace CSharp.Tests
+{
+    public class InvertColorsTest
+    {
+        [Theory]
+        [InlineData(new byte[] { 165, 170, 119 }, new byte[] { 90, 85, 136 })]
+        [InlineData(new byte[] { 165, 170, 136 }, new byte[] { 90, 85, 119 })]
+        [InlineData(new byte[] { 165, 170, 153 }, new byte[] { 90, 85, 102 })]
+        [InlineData(new byte[] { 165, 170, 170 }, new byte[] { 90, 85, 85 })]
+        [InlineData(new byte[] { 165, 170, 187 }, new byte[] { 90, 85, 68 })]
+        [InlineData(new byte[] { 165, 170, 204 }, new byte[] { 90, 85, 51 })]
+        [InlineData(new byte[] { 165, 170, 221 }, new byte[] { 90, 85, 34 })]
+        [InlineData(new byte[] { 165, 170, 238 }, new byte[] { 90, 85, 17 })]
+        [InlineData(new byte[] { 165, 180, 0 }, new byte[] { 90, 75, 255 })]
+        [InlineData(new byte[] { 165, 180, 17 }, new byte[] { 90, 75, 238 })]
+        [InlineData(new byte[] { 165, 180, 34 }, new byte[] { 90, 75, 221 })]
+        [InlineData(new byte[] { 165, 180, 51 }, new byte[] { 90, 75, 204 })]
+        [InlineData(new byte[] { 165, 180, 68 }, new byte[] { 90, 75, 187 })]
+        [InlineData(new byte[] { 165, 180, 85 }, new byte[] { 90, 75, 170 })]
+        [InlineData(new byte[] { 165, 180, 102 }, new byte[] { 90, 75, 153 })]
+        [InlineData(new byte[] { 0, 0, 0 }, new byte[] { 255, 255, 255 })]
+        [InlineData(new byte[] { 0, 0, 17 }, new byte[] { 255, 255, 238 })]
+        [InlineData(new byte[] { 0, 0, 34 }, new byte[] { 255, 255, 221 })]
+        [InlineData(new byte[] { 0, 0, 51 }, new byte[] { 255, 255, 204 })]
+        [InlineData(new byte[] { 0, 0, 68 }, new byte[] { 255, 255, 187 })]
+        [InlineData(new byte[] { 240, 250, 153 }, new byte[] { 15, 5, 102 })]
+        [InlineData(new byte[] { 240, 250, 170 }, new byte[] { 15, 5, 85 })]
+        [InlineData(new byte[] { 240, 250, 187 }, new byte[] { 15, 5, 68 })]
+        [InlineData(new byte[] { 240, 250, 204 }, new byte[] { 15, 5, 51 })]
+        [InlineData(new byte[] { 240, 250, 221 }, new byte[] { 15, 5, 34 })]
+        [InlineData(new byte[] { 240, 250, 238 }, new byte[] { 15, 5, 17 })]
+        [InlineData(new byte[] { 255, 255, 255 }, new byte[] { 0, 0, 0 })]
+        [InlineData(new byte[] { 240, 180, 136 }, new byte[] { 15, 75, 119 })]
+        [InlineData(new byte[] { 240, 180, 153 }, new byte[] { 15, 75, 102 })]
+        [InlineData(new byte[] { 240, 180, 170 }, new byte[] { 15, 75, 85 })]
+        [InlineData(new byte[] { 240, 180, 187 }, new byte[] { 15, 75, 68 })]
+        [InlineData(new byte[] { 240, 180, 204 }, new byte[] { 15, 75, 51 })]
+        [InlineData(new byte[] { 240, 180, 221 }, new byte[] { 15, 75, 34 })]
+        [InlineData(new byte[] { 240, 180, 238 }, new byte[] { 15, 75, 17 })]
+        [InlineData(new byte[] { 240, 190, 0 }, new byte[] { 15, 65, 255 })]
+        [InlineData(new byte[] { 240, 190, 17 }, new byte[] { 15, 65, 238 })]
+        [InlineData(new byte[] { 240, 190, 34 }, new byte[] { 15, 65, 221 })]
+        [InlineData(new byte[] { 240, 190, 51 }, new byte[] { 15, 65, 204 })]
+        [InlineData(new byte[] { 240, 190, 68 }, new byte[] { 15, 65, 187 })]
+        [InlineData(new byte[] { 240, 190, 85 }, new byte[] { 15, 65, 170 })]
+        [InlineData(new byte[] { 240, 190, 102 }, new byte[] { 15, 65, 153 })]
+        [InlineData(new byte[] { 240, 190, 119 }, new byte[] { 15, 65, 136 })]
+        [InlineData(new byte[] { 240, 190, 136 }, new byte[] { 15, 65, 119 })]
+        [InlineData(new byte[] { 240, 190, 153 }, new byte[] { 15, 65, 102 })]
+        [InlineData(new byte[] { 240, 190, 170 }, new byte[] { 15, 65, 85 })]
+        [InlineData(new byte[] { 240, 190, 187 }, new byte[] { 15, 65, 68 })]
+        [InlineData(new byte[] { 240, 190, 204 }, new byte[] { 15, 65, 51 })]
+        [InlineData(new byte[] { 240, 190, 221 }, new byte[] { 15, 65, 34 })]
+        [InlineData(new byte[] { 240, 190, 238 }, new byte[] { 15, 65, 17 })]
+        [InlineData(new byte[] { 240, 200, 0 }, new byte[] { 15, 55, 255 })]
+        [InlineData(new byte[] { 240, 200, 17 }, new byte[] { 15, 55, 238 })]
+        [InlineData(new byte[] { 240, 200, 34 }, new byte[] { 15, 55, 221 })]
+        [InlineData(new byte[] { 240, 200, 51 }, new byte[] { 15, 55, 204 })]
+        [InlineData(new byte[] { 240, 200, 68 }, new byte[] { 15, 55, 187 })]
+        [InlineData(new byte[] { 240, 200, 85 }, new byte[] { 15, 55, 170 })]
+        [InlineData(new byte[] { 240, 200, 102 }, new byte[] { 15, 55, 153 })]
+        [InlineData(new byte[] { 240, 200, 119 }, new byte[] { 15, 55, 136 })]
+        [InlineData(new byte[] { 240, 200, 136 }, new byte[] { 15, 55, 119 })]
+        [InlineData(new byte[] { 240, 200, 153 }, new byte[] { 15, 55, 102 })]
+        [InlineData(new byte[] { 240, 200, 170 }, new byte[] { 15, 55, 85 })]
+        public void ColorInvert_byteArrayRGBValue_ReturnInvertedRGBValue(byte[] rgb, byte[] expected)
+        {
+            var actual = InvertColors.ColorInvert(rgb);
+
+            Assert.Equal(expected, actual);
+        }
+    }
+}

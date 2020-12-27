@@ -4,5 +4,5 @@ List of solved coding challeneges from the coding challenge site [Edabit](https:
 
 |  Language  | Total Solved |
 | :--------: | :----------: |
-|     C#     |      73      |
-| Javascript |      73      |
+|     C#     |      74      |
+| Javascript |      74      |

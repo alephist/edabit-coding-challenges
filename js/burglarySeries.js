@@ -21,4 +21,21 @@ const mostExpensiveItem = (obj) => {
   return Object.keys(obj).filter((key) => obj[key] === maxValue)[0];
 };
 
-module.exports = { stolenItems, mostExpensiveItem };
+// Part 03
+// Problem# 127
+// Your spouse is not concerned with the loss of material possessions but rather with his/her favorite pet. Is it gone?!
+// Given an object of the stolen items and a string in lower cases representing
+// the name of the pet (e.g. "rambo"), return:
+// "Rambo is gone..." if the name is on the list.
+// "Rambo is here!" if the name is not on the list.
+// https://edabit.com/challenge/FBj5P49wwFzj2Jnfr
+
+const findIt = (obj, name) => {
+  let capitalizedName = name.substring(0, 1).toUpperCase() + name.substring(1);
+
+  return `${capitalizedName} ${
+    obj.hasOwnProperty(name) ? "is gone..." : "is here!"
+  }`;
+};
+
+module.exports = { stolenItems, mostExpensiveItem, findIt };

@@ -1,4 +1,4 @@
-const { stolenItems, mostExpensiveItem } = require("../burglarySeries");
+const { stolenItems, mostExpensiveItem, findIt } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
   describe("Part 01: Stolen Items", () => {
@@ -31,6 +31,27 @@ describe("Burglary Series", () => {
 
         test.each(data)("mostExpensiveItem(%o) = %p", (obj, result) => {
           let actual = mostExpensiveItem(obj);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 03: Is It Gone?", () => {
+    describe("findIt", () => {
+      describe("Return message if pet is gone or not", () => {
+        const data = [
+          [{}, "rambo", "Rambo is here!"],
+          [{}, "heman", "Heman is here!"],
+          [{ tv: 30, stereo: 50 }, "rocky", "Rocky is here!"],
+          [{ tv: 30, stereo: 50 }, "spiderman", "Spiderman is here!"],
+          [{ tv: 30, stereo: 50, julius: 100 }, "julius", "Julius is gone..."],
+          [{ tv: 30, stereo: 50, batman: 200 }, "batman", "Batman is gone..."]
+        ];
+
+        test.each(data)("findIt(%o, %p) = %p", (obj, name, result) => {
+          let actual = findIt(obj, name);
 
           expect(actual).toEqual(result);
         });

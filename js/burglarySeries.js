@@ -46,4 +46,25 @@ const findIt = (obj, name) => {
 
 const addName = (obj, name, value) => Object.assign(obj, { [name]: value });
 
-module.exports = { stolenItems, mostExpensiveItem, findIt, addName };
+// Part 05
+// Problem# 129
+// Time to call your lover to inform what he/she lost in the burglary.
+// Given an object of the stolen objects, return the 3rd most expensive item on the list.
+// If that is not possible, because there are not enough items, return false.
+// https://edabit.com/challenge/3hDDMWvmMQ6pFqqmg
+
+const thirdMostExpensive = (obj) => {
+  let thirdMaxValue = Object.values(obj).sort((a, b) => b - a)[2];
+
+  return thirdMaxValue
+    ? Object.keys(obj).find((key) => obj[key] === thirdMaxValue)
+    : false;
+};
+
+module.exports = {
+  stolenItems,
+  mostExpensiveItem,
+  findIt,
+  addName,
+  thirdMostExpensive
+};

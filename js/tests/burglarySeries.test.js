@@ -2,7 +2,8 @@ const {
   stolenItems,
   mostExpensiveItem,
   findIt,
-  addName
+  addName,
+  thirdMostExpensive
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -86,6 +87,30 @@ describe("Burglary Series", () => {
             expect(actual).toEqual(result);
           }
         );
+      });
+    });
+  });
+
+  describe("Part 05: Third Most Expensive", () => {
+    describe("thirdMostExpensive", () => {
+      describe("Return the third most expensive item on the list, otherwise return false", () => {
+        const data = [
+          [{}, false],
+          [{ piano: 100 }, false],
+          [{ piano: 100, stereo: 200 }, false],
+          [{ piano: 100, stereo: 200, tv: 10 }, "tv"],
+          [{ piano: 100, stereo: 200, tv: 10, timmy: 500 }, "piano"],
+          [
+            { computer: 1000, piano: 500, stereo: 200, tv: 10, timmy: 1 },
+            "stereo"
+          ]
+        ];
+
+        test.each(data)("thirdMostExpensive(%o) = %s", (obj, result) => {
+          let actual = thirdMostExpensive(obj);
+
+          expect(actual).toEqual(result);
+        });
       });
     });
   });

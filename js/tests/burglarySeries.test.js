@@ -1,4 +1,9 @@
-const { stolenItems, mostExpensiveItem, findIt } = require("../burglarySeries");
+const {
+  stolenItems,
+  mostExpensiveItem,
+  findIt,
+  addName
+} = require("../burglarySeries");
 
 describe("Burglary Series", () => {
   describe("Part 01: Stolen Items", () => {
@@ -55,6 +60,32 @@ describe("Burglary Series", () => {
 
           expect(actual).toEqual(result);
         });
+      });
+    });
+  });
+
+  describe("Part 04: Add Its Name", () => {
+    describe("addName", () => {
+      describe("Return object with name and value as key-value pairs", () => {
+        const data = [
+          [{}, "Brutus", 300, { Brutus: 300 }],
+          [{ piano: 500 }, "Brutus", 400, { piano: 500, Brutus: 400 }],
+          [
+            { piano: 500, stereo: 300 },
+            "Caligula",
+            440,
+            { piano: 500, stereo: 300, Caligula: 440 }
+          ]
+        ];
+
+        test.each(data)(
+          "addName(%o, %p, %i) = %o",
+          (obj, name, value, result) => {
+            let actual = addName(obj, name, value);
+
+            expect(actual).toEqual(result);
+          }
+        );
       });
     });
   });

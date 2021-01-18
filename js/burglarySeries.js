@@ -38,4 +38,12 @@ const findIt = (obj, name) => {
   }`;
 };
 
-module.exports = { stolenItems, mostExpensiveItem, findIt };
+// Part 04
+// Problem# 128
+// Given three arguments ⁠— an object obj of the stolen items, the pets name and a value
+// return an object with that name and value in it (as key-value pairs).
+// https://edabit.com/challenge/9KEKJG5PZTFmG3Zau
+
+const addName = (obj, name, value) => Object.assign(obj, { [name]: value });
+
+module.exports = { stolenItems, mostExpensiveItem, findIt, addName };

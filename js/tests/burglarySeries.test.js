@@ -4,7 +4,8 @@ const {
   findIt,
   addName,
   thirdMostExpensive,
-  convertToNumber
+  convertToNumber,
+  makeCopy
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -133,6 +134,23 @@ describe("Burglary Series", () => {
 
         test.each(data)("convertToNumber(%o) = %o", (obj, result) => {
           let actual = convertToNumber(obj);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 07: Make A Copy", () => {
+    describe("makeCopy", () => {
+      describe("Return a copy of the list", () => {
+        const data = [
+          [{ piano: 100 }, { piano: 100 }],
+          [{ stereo: 200 }, { stereo: 200 }]
+        ];
+
+        test.each(data)("makeCopy(%o) = %o", (obj, result) => {
+          let actual = makeCopy(obj);
 
           expect(actual).toEqual(result);
         });

@@ -61,10 +61,25 @@ const thirdMostExpensive = (obj) => {
     : false;
 };
 
+// Part 06
+// Problem# 130
+// You prepare a list to send to the insurance company. As you finish, you notice you misformatted it.
+// Given an object with at least one key/value pair, convert all the values to numbers.
+// https://edabit.com/challenge/ttuBGpGu7w4Ec3spT
+
+const convertToNumber = (obj) => {
+  for (const key in obj) {
+    Object.assign(obj, { [key]: Number(obj[key]) });
+  }
+
+  return obj;
+};
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
   findIt,
   addName,
-  thirdMostExpensive
+  thirdMostExpensive,
+  convertToNumber
 };

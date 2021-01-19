@@ -3,7 +3,8 @@ const {
   mostExpensiveItem,
   findIt,
   addName,
-  thirdMostExpensive
+  thirdMostExpensive,
+  convertToNumber
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -108,6 +109,30 @@ describe("Burglary Series", () => {
 
         test.each(data)("thirdMostExpensive(%o) = %s", (obj, result) => {
           let actual = thirdMostExpensive(obj);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 06: Convert To Number", () => {
+    describe("convertToNumber", () => {
+      describe("Convert all values of an object to number", () => {
+        const data = [
+          [
+            { piano: "200", tv: "300", stereo: "400" },
+            { piano: 200, tv: 300, stereo: 400 }
+          ],
+          [
+            { piano: "200", tv: "300" },
+            { piano: 200, tv: 300 }
+          ],
+          [{ piano: "200" }, { piano: 200 }]
+        ];
+
+        test.each(data)("convertToNumber(%o) = %o", (obj, result) => {
+          let actual = convertToNumber(obj);
 
           expect(actual).toEqual(result);
         });

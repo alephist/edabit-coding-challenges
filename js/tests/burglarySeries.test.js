@@ -5,7 +5,8 @@ const {
   addName,
   thirdMostExpensive,
   convertToNumber,
-  makeCopy
+  makeCopy,
+  removeEntry
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -151,6 +152,29 @@ describe("Burglary Series", () => {
 
         test.each(data)("makeCopy(%o) = %o", (obj, result) => {
           let actual = makeCopy(obj);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 08: Remove An Entry", () => {
+    describe("removeEntry", () => {
+      describe("Return a copy of list without input item name", () => {
+        const random = Math.random();
+
+        const data = [
+          [{ piano: random, tv: 100 }, "tv", { piano: random }],
+          [
+            { piano: random, tv: 100, skate: 50 },
+            "tv",
+            { piano: random, skate: 50 }
+          ]
+        ];
+
+        test.each(data)("removeEntry(%o, %p) = %o", (obj, itemName, result) => {
+          let actual = removeEntry(obj, itemName);
 
           expect(actual).toEqual(result);
         });

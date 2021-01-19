@@ -82,6 +82,20 @@ const convertToNumber = (obj) => {
 
 const makeCopy = (obj) => Object.assign({}, obj);
 
+// Part 08
+// Problem# 132
+// Your spouse tells you that one of the items on the list wasn't stolen, it is in your castle in Transilvania.
+// Given an object of the stolen items and an item name, return a copy without that item on the list.
+// https://edabit.com/challenge/y4K6Mi7XfaauvoT3u
+
+const removeEntry = (obj, itemName) => {
+  const filteredList = Object.entries(obj).filter(
+    ([key, val]) => key !== itemName
+  );
+
+  return Object.fromEntries(filteredList);
+};
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -89,5 +103,6 @@ module.exports = {
   addName,
   thirdMostExpensive,
   convertToNumber,
-  makeCopy
+  makeCopy,
+  removeEntry
 };

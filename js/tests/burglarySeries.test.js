@@ -7,7 +7,8 @@ const {
   convertToNumber,
   makeCopy,
   removeEntry,
-  filterValues
+  filterValues,
+  calculateDifference
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -200,6 +201,26 @@ describe("Burglary Series", () => {
 
           expect(actual).toEqual(result);
         });
+      });
+    });
+  });
+
+  describe("Part 10: Calculate Difference", () => {
+    describe("calculateDifference", () => {
+      describe("Return difference between total value of items and limit of policy", () => {
+        const data = [
+          [{ skate: 20000, painting: 30000, shoes: 1 }, 50000, 1],
+          [{ "baseball bat": 31 }, 10, 21]
+        ];
+
+        test.each(data)(
+          "calculateDifference(%o, %i) = %i",
+          (obj, limit, result) => {
+            let actual = calculateDifference(obj, limit);
+
+            expect(actual).toEqual(result);
+          }
+        );
       });
     });
   });

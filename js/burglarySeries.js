@@ -96,6 +96,18 @@ const removeEntry = (obj, itemName) => {
   return Object.fromEntries(filteredList);
 };
 
+// Part 09
+// Problem# 133
+// The insurance guy calls, the policy you chose doesn't cover values below 5000€, it wouldn't dignify your status you // // said at the time. Given an object with a list of the stolen items, return a copy of that list
+// without the values below 5000.
+// https://edabit.com/challenge/Cve45maGdj5XtQXgo
+
+const filterValues = (obj) => {
+  const filteredList = Object.entries(obj).filter(([key, val]) => val >= 5000);
+
+  return Object.fromEntries(filteredList);
+};
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -104,5 +116,6 @@ module.exports = {
   thirdMostExpensive,
   convertToNumber,
   makeCopy,
-  removeEntry
+  removeEntry,
+  filterValues
 };

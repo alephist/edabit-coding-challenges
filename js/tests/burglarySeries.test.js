@@ -6,7 +6,8 @@ const {
   thirdMostExpensive,
   convertToNumber,
   makeCopy,
-  removeEntry
+  removeEntry,
+  filterValues
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -175,6 +176,27 @@ describe("Burglary Series", () => {
 
         test.each(data)("removeEntry(%o, %p) = %o", (obj, itemName, result) => {
           let actual = removeEntry(obj, itemName);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 09: Filter Values", () => {
+    describe("filterValues", () => {
+      describe("Return list of items with values equal or greater than 5000", () => {
+        const data = [
+          [{}, {}],
+          [{ piano: 300 }, {}],
+          [
+            { tv: 4999, guitar: 5000, fork: 5001 },
+            { guitar: 5000, fork: 5001 }
+          ]
+        ];
+
+        test.each(data)("filterValues(%o) = %o", (obj, result) => {
+          let actual = filterValues(obj);
 
           expect(actual).toEqual(result);
         });

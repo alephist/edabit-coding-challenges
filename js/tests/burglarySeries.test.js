@@ -9,7 +9,8 @@ const {
   removeEntry,
   filterValues,
   calculateDifference,
-  sayWhat
+  sayWhat,
+  getVodkaBottle
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -237,6 +238,36 @@ describe("Burglary Series", () => {
 
         test.each(data)("sayWhat(%o) = %p", (obj, result) => {
           let actual = sayWhat(obj);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 12: Get Vodka Bottle", () => {
+    describe("getVodkaBottle", () => {
+      describe("Return a string with the name of the Rammstein bottle that matches the given number", () => {
+        const data = [
+          [
+            { whiskey: 100, "Rammstein A": 100, "Rammstein B": 50 },
+            100,
+            "Rammstein A"
+          ],
+          [
+            { whiskey: 100, "Rammstein A": 100, "Rammstein B": 50 },
+            50,
+            "Rammstein B"
+          ],
+          [
+            { whiskey: 100, "Rammstein A": 100, "Rammstein D": 70, beer: 70 },
+            70,
+            "Rammstein D"
+          ]
+        ];
+
+        test.each(data)("getVodkaBottle(%o, %i) = %p", (obj, num, result) => {
+          let actual = getVodkaBottle(obj, num);
 
           expect(actual).toEqual(result);
         });

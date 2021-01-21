@@ -8,7 +8,8 @@ const {
   makeCopy,
   removeEntry,
   filterValues,
-  calculateDifference
+  calculateDifference,
+  sayWhat
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -221,6 +222,24 @@ describe("Burglary Series", () => {
             expect(actual).toEqual(result);
           }
         );
+      });
+    });
+  });
+
+  describe("Part 11: Say What", () => {
+    describe("sayWhat", () => {
+      describe("Return string that concatenates all values and adds 2nd key at the end", () => {
+        const data = [
+          [{ 1: "Mommy", 2: "please", 3: "help" }, "Mommy please help please"],
+          [{ 1: "Me", 2: "innocent", 3: "is" }, "Me innocent is innocent"],
+          [{ 1: "Must", 2: "lawyer", 3: "call" }, "Must lawyer call lawyer"]
+        ];
+
+        test.each(data)("sayWhat(%o) = %p", (obj, result) => {
+          let actual = sayWhat(obj);
+
+          expect(actual).toEqual(result);
+        });
       });
     });
   });

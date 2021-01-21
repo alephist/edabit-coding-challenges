@@ -123,6 +123,21 @@ const calculateDifference = (obj, limit) => {
   return totalValue - limit;
 };
 
+// Part 11
+// Problem# 135
+// The insurance guy calls again. Apparently, they were informed by your spouse that some items were not stolen at all
+// and you failed to mention this detail to them. This is a fraud attempt! You freeze and mumble something
+// unintelligible. Find out what you said. Given an object, return a string that concatenates all the values and
+// adds the 2nd key at the end. Make sure you keep an empty space between them but not at the beginning or
+// end of the string.
+// https://edabit.com/challenge/7hrjegxToTSF4zAoM
+
+const sayWhat = (obj) => {
+  const wordsArray = Object.values(obj);
+
+  return `${wordsArray.join(" ")} ${wordsArray[1]}`;
+};
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -133,5 +148,6 @@ module.exports = {
   makeCopy,
   removeEntry,
   filterValues,
-  calculateDifference
+  calculateDifference,
+  sayWhat
 };

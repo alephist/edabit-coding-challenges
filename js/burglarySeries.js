@@ -165,6 +165,14 @@ const sortList = (obj) =>
       return list;
     }, {});
 
+// Part 14
+// Problem# 138
+// You call your spouse in anger and a "little" argument takes place. Count the total amount of adjectives used.
+// Given an object with a list of adjectives, return the total amount of adjectives used.
+// https://edabit.com/challenge/NkMTBCxMkt4meHpa4
+
+const totalAmountAdjectives = (obj) => Object.values(obj).length;
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -178,5 +186,6 @@ module.exports = {
   calculateDifference,
   sayWhat,
   getVodkaBottle,
-  sortList
+  sortList,
+  totalAmountAdjectives
 };

@@ -11,7 +11,8 @@ const {
   calculateDifference,
   sayWhat,
   getVodkaBottle,
-  sortList
+  sortList,
+  totalAmountAdjectives
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -296,6 +297,24 @@ describe("Burglary Series", () => {
 
         test.each(data)("sortList(%o) = %o", (obj, result) => {
           let actual = sortList(obj);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 14: Adjectives Total", () => {
+    describe("totalAmountAdjectives", () => {
+      describe("Return total amount of adjectives used", () => {
+        const data = [
+          [{ a: "moron" }, 1],
+          [{ a: "idiot", b: "idiot", c: "idiot" }, 3],
+          [{ a: "moron", b: "scumbag", c: "moron", d: "dirtbag" }, 4]
+        ];
+
+        test.each(data)("totalAmountAdjectives(%o) = %i", (obj, result) => {
+          let actual = totalAmountAdjectives(obj);
 
           expect(actual).toEqual(result);
         });

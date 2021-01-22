@@ -10,7 +10,8 @@ const {
   filterValues,
   calculateDifference,
   sayWhat,
-  getVodkaBottle
+  getVodkaBottle,
+  sortList
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -268,6 +269,33 @@ describe("Burglary Series", () => {
 
         test.each(data)("getVodkaBottle(%o, %i) = %p", (obj, num, result) => {
           let actual = getVodkaBottle(obj, num);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 13: Sort That List", () => {
+    describe("sortList", () => {
+      describe("Return new object with list in reverse order", () => {
+        const data = [
+          [
+            { c: 100, a: 50, b: 10, d: 50 },
+            { d: 50, c: 100, b: 10, a: 50 }
+          ],
+          [
+            { ab: 10, ac: 10, ad: 10 },
+            { ad: 10, ac: 10, ab: 10 }
+          ],
+          [
+            { piano: 5, stereo: 10, suitcase: 1 },
+            { suitcase: 1, stereo: 10, piano: 5 }
+          ]
+        ];
+
+        test.each(data)("sortList(%o) = %o", (obj, result) => {
+          let actual = sortList(obj);
 
           expect(actual).toEqual(result);
         });

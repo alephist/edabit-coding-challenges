@@ -150,6 +150,21 @@ const getVodkaBottle = (obj, num) => {
   return drinks.find((key) => key.includes("Rammstein") && obj[key] === num);
 };
 
+// Part 13
+// Problem# 137
+// The insurance guy tells you he needs an updated list of the stolen goods, and surely only to annoy you, he adds,
+// "in reverse alphabetical order". Given an object with the stolen items, return a new object with the list in
+// reverse alphabetical order.
+// https://edabit.com/challenge/qrb9Xaapq9b8nstLe
+
+const sortList = (obj) =>
+  Object.keys(obj)
+    .reverse()
+    .reduce((list, key) => {
+      list[key] = obj[key];
+      return list;
+    }, {});
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -162,5 +177,6 @@ module.exports = {
   filterValues,
   calculateDifference,
   sayWhat,
-  getVodkaBottle
+  getVodkaBottle,
+  sortList
 };

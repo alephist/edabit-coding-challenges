@@ -12,7 +12,8 @@ const {
   sayWhat,
   getVodkaBottle,
   sortList,
-  totalAmountAdjectives
+  totalAmountAdjectives,
+  countNumberOfOccurences
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -315,6 +316,30 @@ describe("Burglary Series", () => {
 
         test.each(data)("totalAmountAdjectives(%o) = %i", (obj, result) => {
           let actual = totalAmountAdjectives(obj);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 15: Number Of Occurences", () => {
+    describe("countNumberOfOccurences", () => {
+      describe("Return new object with count of occurences of each adjective", () => {
+        const data = [
+          [
+            { a: "moron", b: "scumbag", c: "moron", d: "idiot", e: "idiot" },
+            { moron: 2, scumbag: 1, idiot: 2 }
+          ],
+          [{ a: "moron", b: "moron", c: "moron" }, { moron: 3 }],
+          [
+            { a: "idiot", b: "scumbag" },
+            { idiot: 1, scumbag: 1 }
+          ]
+        ];
+
+        test.each(data)("countNumberOfOccurences(%o) = %o", (obj, result) => {
+          let actual = countNumberOfOccurences(obj);
 
           expect(actual).toEqual(result);
         });

@@ -173,6 +173,24 @@ const sortList = (obj) =>
 
 const totalAmountAdjectives = (obj) => Object.values(obj).length;
 
+// Part 15
+// Problem# 139
+// To further increase the statistical knowledge of your fight, count the number of times a certain adjective was used.
+// Given an object that contains several adjectives as values, return a new object where you count the ocurrences
+// of each adjective.
+// https://edabit.com/challenge/Mwryyhy2e8Gk9yrCh
+
+const countNumberOfOccurences = (obj) =>
+  Object.values(obj).reduce((list, adjective) => {
+    if (adjective in list) {
+      list[adjective]++;
+    } else {
+      list[adjective] = 1;
+    }
+
+    return list;
+  }, {});
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -187,5 +205,6 @@ module.exports = {
   sayWhat,
   getVodkaBottle,
   sortList,
-  totalAmountAdjectives
+  totalAmountAdjectives,
+  countNumberOfOccurences
 };

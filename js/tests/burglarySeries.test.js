@@ -13,7 +13,8 @@ const {
   getVodkaBottle,
   sortList,
   totalAmountAdjectives,
-  countNumberOfOccurences
+  countNumberOfOccurences,
+  determineWhoCursedTheMost
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -340,6 +341,45 @@ describe("Burglary Series", () => {
 
         test.each(data)("countNumberOfOccurences(%o) = %o", (obj, result) => {
           let actual = countNumberOfOccurences(obj);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 16: Nested Objects", () => {
+    describe("determineWhoCursedTheMost", () => {
+      describe("Return string of who cursed the most", () => {
+        const data = [
+          [
+            {
+              round1: { me: 10, spouse: 5 },
+              round2: { me: 5, spouse: 10 },
+              round3: { me: 10, spouse: 10 }
+            },
+            "DRAW!"
+          ],
+          [
+            {
+              round1: { me: 40, spouse: 5 },
+              round2: { me: 9, spouse: 10 },
+              round3: { me: 9, spouse: 10 }
+            },
+            "ME!"
+          ],
+          [
+            {
+              round1: { me: 10, spouse: 5 },
+              round2: { me: 9, spouse: 44 },
+              round3: { me: 10, spouse: 55 }
+            },
+            "SPOUSE!"
+          ]
+        ];
+
+        test.each(data)("determineWhoCursedTheMost(%o) = %p", (obj, result) => {
+          let actual = determineWhoCursedTheMost(obj);
 
           expect(actual).toEqual(result);
         });

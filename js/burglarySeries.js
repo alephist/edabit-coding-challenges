@@ -191,6 +191,25 @@ const countNumberOfOccurences = (obj) =>
     return list;
   }, {});
 
+// Part 16
+// Problem# 140
+// And who cursed the most in the fight between you and your spouse?
+// Given an object with three rounds, with nested objects as your scores per round, return a string of who cursed
+// the most: If you, return "ME!" If your spouse, return "SPOUSE!" If a draw, return "DRAW!"
+// https://edabit.com/challenge/SvodRRbyv7g3LxZsK
+
+const determineWhoCursedTheMost = (obj) => {
+  const rounds = Object.values(obj);
+  const totalMe = rounds.reduce((acc, curr) => acc + curr.me, 0);
+  const totalSpouse = rounds.reduce((acc, curr) => acc + curr.spouse, 0);
+
+  return totalMe === totalSpouse
+    ? "DRAW!"
+    : totalMe > totalSpouse
+    ? "ME!"
+    : "SPOUSE!";
+};
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -206,5 +225,6 @@ module.exports = {
   getVodkaBottle,
   sortList,
   totalAmountAdjectives,
-  countNumberOfOccurences
+  countNumberOfOccurences,
+  determineWhoCursedTheMost
 };

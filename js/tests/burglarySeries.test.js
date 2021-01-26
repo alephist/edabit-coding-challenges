@@ -14,7 +14,8 @@ const {
   sortList,
   totalAmountAdjectives,
   countNumberOfOccurences,
-  determineWhoCursedTheMost
+  determineWhoCursedTheMost,
+  determineWinnerOfFight
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -380,6 +381,45 @@ describe("Burglary Series", () => {
 
         test.each(data)("determineWhoCursedTheMost(%o) = %p", (obj, result) => {
           let actual = determineWhoCursedTheMost(obj);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 17: Who Is The Winner?", () => {
+    describe("determineWinnerOfFight", () => {
+      describe("Return who won most rounds", () => {
+        const data = [
+          [
+            {
+              round1: { me: 10, spouse: 5 },
+              round2: { me: 9, spouse: 9 },
+              round3: { me: 20, spouse: 20 }
+            },
+            "ME!"
+          ],
+          [
+            {
+              round1: { me: 10, spouse: 5 },
+              round2: { me: 9, spouse: 14 },
+              round3: { me: 10, spouse: 55 }
+            },
+            "SPOUSE!"
+          ],
+          [
+            {
+              round1: { me: 10, spouse: 9 },
+              round2: { me: 11, spouse: 12 },
+              round3: { me: 10, spouse: 10 }
+            },
+            "NOBODY!"
+          ]
+        ];
+
+        test.each(data)("determineWinnerOfFight(%o) = %p", (obj, result) => {
+          let actual = determineWinnerOfFight(obj);
 
           expect(actual).toEqual(result);
         });

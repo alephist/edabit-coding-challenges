@@ -210,6 +210,33 @@ const determineWhoCursedTheMost = (obj) => {
     : "SPOUSE!";
 };
 
+// Part 17
+// Problem# 141
+// The fight between you and your spouse is over. Based on your perception of how the fight went, determine who won.
+// Given an object with three rounds, with nested objects as your points per round, determine the winner by counting
+// who won the most rounds. The winner of the round is whoever scored the most points in that round.
+// Draws are possible, both in rounds as in the final result.
+// If you won more rounds than your spouse, return "ME!", if your spouse won more rounds, return "SPOUSE!"
+// If you are tied, return "NOBODY!"
+// https://edabit.com/challenge/Zou4ggX2D9w39wJrG
+
+const determineWinnerOfFight = (obj) => {
+  const [me, spouse] = Object.values(obj).reduce(
+    (acc, curr) => {
+      if (curr.me > curr.spouse) {
+        acc[0]++;
+      } else if (curr.me < curr.spouse) {
+        acc[1]++;
+      }
+
+      return acc;
+    },
+    [0, 0]
+  );
+
+  return me === spouse ? "NOBODY!" : me > spouse ? "ME!" : "SPOUSE!";
+};
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -226,5 +253,6 @@ module.exports = {
   sortList,
   totalAmountAdjectives,
   countNumberOfOccurences,
-  determineWhoCursedTheMost
+  determineWhoCursedTheMost,
+  determineWinnerOfFight
 };

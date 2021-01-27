@@ -237,6 +237,32 @@ const determineWinnerOfFight = (obj) => {
   return me === spouse ? "NOBODY!" : me > spouse ? "ME!" : "SPOUSE!";
 };
 
+// Part 18
+// Problem# 142
+// The police call. They need a more detailed list of the stolen goods.
+// You are given an array with nested arrays that represent each room in your mansion where the goods were stolen.
+// Each room will have two sub-arrays, one for the stolen items and the other for its values. They always match,
+// the stolen item at index 0 is worth the value at index 0 of the values array, the stolen item at index 1 is worth
+// the value at index 1, and so forth. Look at the example for a clearer picture.
+// Return an object that represents where the goods were stolen from and which goods were stolen from each room
+// and their value.
+// https://edabit.com/challenge/u8SiTaBmMKCYAfK3J
+
+const makeDetailedList = (arr) =>
+  arr.reduce((list, room) => {
+    const [roomName, itemNames, itemValues] = room;
+
+    const itemList = {};
+
+    for (let i = 0; i < itemNames.length; i++) {
+      itemList[itemNames[i]] = itemValues[i];
+    }
+
+    list[roomName] = itemList;
+
+    return list;
+  }, {});
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -254,5 +280,6 @@ module.exports = {
   totalAmountAdjectives,
   countNumberOfOccurences,
   determineWhoCursedTheMost,
-  determineWinnerOfFight
+  determineWinnerOfFight,
+  makeDetailedList
 };

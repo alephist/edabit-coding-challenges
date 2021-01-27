@@ -15,7 +15,8 @@ const {
   totalAmountAdjectives,
   countNumberOfOccurences,
   determineWhoCursedTheMost,
-  determineWinnerOfFight
+  determineWinnerOfFight,
+  makeDetailedList
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -420,6 +421,35 @@ describe("Burglary Series", () => {
 
         test.each(data)("determineWinnerOfFight(%o) = %p", (obj, result) => {
           let actual = determineWinnerOfFight(obj);
+
+          expect(actual).toEqual(result);
+        });
+      });
+    });
+  });
+
+  describe("Part 18: Detailed List", () => {
+    describe("makeDetailedList", () => {
+      describe("Return an object that represents where the goods were stolen and which goods are stolen", () => {
+        const data = [
+          [
+            [["kitchen", ["piano", "tv"], [1000, 50]]],
+            { kitchen: { piano: 1000, tv: 50 } }
+          ],
+          [
+            [
+              ["basement", ["baseball bat"], [500]],
+              ["garage", ["horses", "cadillac", "flowers"], [110, 2000, 30]]
+            ],
+            {
+              basement: { "baseball bat": 500 },
+              garage: { horses: 110, cadillac: 2000, flowers: 30 }
+            }
+          ]
+        ];
+
+        test.each(data)("makeDetailedList(%o) = %o", (arr, result) => {
+          let actual = makeDetailedList(arr);
 
           expect(actual).toEqual(result);
         });

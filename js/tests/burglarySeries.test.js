@@ -16,7 +16,8 @@ const {
   countNumberOfOccurences,
   determineWhoCursedTheMost,
   determineWinnerOfFight,
-  makeDetailedList
+  makeDetailedList,
+  preventChanges
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -453,6 +454,18 @@ describe("Burglary Series", () => {
 
           expect(actual).toEqual(result);
         });
+      });
+    });
+  });
+
+  describe("Part 19: Prevent Changes", () => {
+    describe("preventChanges", () => {
+      test("Return input object despite added changes in the function", () => {
+        const obj = { noChanges: true };
+
+        let actual = preventChanges(obj);
+
+        expect(actual).toEqual(obj);
       });
     });
   });

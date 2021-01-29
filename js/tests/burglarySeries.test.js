@@ -17,7 +17,8 @@ const {
   determineWhoCursedTheMost,
   determineWinnerOfFight,
   makeDetailedList,
-  preventChanges
+  preventChanges,
+  signYourName
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -466,6 +467,18 @@ describe("Burglary Series", () => {
         let actual = preventChanges(obj);
 
         expect(actual).toEqual(obj);
+      });
+    });
+  });
+
+  describe("Part 20: Sign Your Name", () => {
+    describe("signYourName", () => {
+      test("Return input object with no additional properties", () => {
+        const obj = { yourSignature: "" };
+
+        let actual = signYourName(obj);
+
+        expect(actual).toEqual({ yourSignature: "Whatever" });
       });
     });
   });

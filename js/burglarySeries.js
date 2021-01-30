@@ -299,6 +299,29 @@ const signYourName = (obj) => {
   return obj;
 };
 
+// Part 21
+// Problem# 145
+// It's the police again. They need more signatures. You should also sign each room list separately.
+// However, the document they sent is incomplete as there is only one room present. As a good citizen that you are,
+// you sign it nevertheless.
+// This challenge is a bit different as the function you are given already contains some code that you should not
+// change or remove. Also, don't use a return statement, it is already included.
+// The function receives an object with one nested object as an argument. Your task is:
+// on the root object: prevent any kind of changes.
+// on the nested object: prevent new properties from being added BUT allow for existing properties to be changed.
+// https://edabit.com/challenge/H5rAoCQBjyB4woTPY
+
+const signAgain = (obj) => {
+  Object.freeze(obj);
+  Object.seal(obj.kitchen);
+
+  obj.signature = "Terminator";
+  obj.extraProperty = "not possible";
+  obj.kitchen.piano = 1000;
+  obj.kitchen.signature = "Rocky Balboa";
+  return obj;
+};
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -319,5 +342,6 @@ module.exports = {
   determineWinnerOfFight,
   makeDetailedList,
   preventChanges,
-  signYourName
+  signYourName,
+  signAgain
 };

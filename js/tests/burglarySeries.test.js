@@ -18,7 +18,8 @@ const {
   determineWinnerOfFight,
   makeDetailedList,
   preventChanges,
-  signYourName
+  signYourName,
+  signAgain
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -479,6 +480,34 @@ describe("Burglary Series", () => {
         let actual = signYourName(obj);
 
         expect(actual).toEqual({ yourSignature: "Whatever" });
+      });
+    });
+  });
+
+  describe("Part 21: Sign Your Name Again", () => {
+    describe("signAgain", () => {
+      test("Return object in which the root object and nested object have no additional property and allow existing properties in nested object to change", () => {
+        const obj = {
+          kitchen: {
+            knives: 500,
+            stereo: 200,
+            signature: ""
+          },
+          signature: "Rocky Balboa"
+        };
+
+        const result = {
+          kitchen: {
+            knives: 500,
+            stereo: 200,
+            signature: "Rocky Balboa"
+          },
+          signature: "Rocky Balboa"
+        };
+
+        let actual = signAgain(obj);
+
+        expect(actual).toEqual(result);
       });
     });
   });

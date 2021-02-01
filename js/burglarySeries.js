@@ -322,6 +322,32 @@ const signAgain = (obj) => {
   return obj;
 };
 
+// Part 22
+// Problem# 146
+// You finally receive the entire stolen list document from the police. You need to sign at the end of the document
+// but also each sub-list corresponding to each room in your house where the items were stolen.
+// You are given two arguments, one object with nested objects and a string that corresponds to your name.
+// The object already contains several signature properties, one on the root, the others on each nested object.
+// Return an object with all containing signature values set to your name.
+// https://edabit.com/challenge/xrsiqZKrMoT2skt9i
+
+const signAll = (obj, name) => {
+  // Change signature property onroot object
+  Object.seal(obj);
+  obj.signature = name;
+
+  // Change signature property in nested objects
+  Object.entries(obj).forEach(([key, val]) => {
+    if (key !== "signature") {
+      Object.seal(obj[key]);
+
+      obj[key].signature = name;
+    }
+  });
+
+  return obj;
+};
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -343,5 +369,6 @@ module.exports = {
   makeDetailedList,
   preventChanges,
   signYourName,
-  signAgain
+  signAgain,
+  signAll
 };

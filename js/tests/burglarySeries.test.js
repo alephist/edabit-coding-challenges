@@ -19,7 +19,8 @@ const {
   makeDetailedList,
   preventChanges,
   signYourName,
-  signAgain
+  signAgain,
+  signAll
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -506,6 +507,42 @@ describe("Burglary Series", () => {
         };
 
         let actual = signAgain(obj);
+
+        expect(actual).toEqual(result);
+      });
+    });
+  });
+
+  describe("Part 22: Sign All", () => {
+    describe("signAll", () => {
+      test("Return object with all containing signature values set to user's name", () => {
+        const obj = {
+          kitchen: {
+            painting: 100,
+            piano: 1000,
+            signature: ""
+          },
+          bathroom: {
+            stereo: 220,
+            signature: ""
+          },
+          signature: ""
+        };
+
+        const result = {
+          kitchen: {
+            painting: 100,
+            piano: 1000,
+            signature: "Rocky"
+          },
+          bathroom: {
+            stereo: 220,
+            signature: "Rocky"
+          },
+          signature: "Rocky"
+        };
+
+        let actual = signAll(obj, "Rocky");
 
         expect(actual).toEqual(result);
       });

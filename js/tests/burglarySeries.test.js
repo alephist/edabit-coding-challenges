@@ -20,7 +20,8 @@ const {
   preventChanges,
   signYourName,
   signAgain,
-  signAll
+  signAll,
+  findAndRemove
 } = require("../burglarySeries");
 
 describe("Burglary Series", () => {
@@ -545,6 +546,54 @@ describe("Burglary Series", () => {
         let actual = signAll(obj, "Rocky");
 
         expect(actual).toEqual(result);
+      });
+    });
+  });
+
+  describe("Part 23: Find And Remove", () => {
+    describe("findAndRemove", () => {
+      describe("Return objects with non-numerical values removed", () => {
+        const data = [
+          [
+            {
+              bedroom: {
+                slippers: "10000",
+                piano: "550",
+                call: "vet",
+                travel: "world"
+              }
+            },
+            { bedroom: { slippers: 10000, piano: 550 } }
+          ],
+          [
+            {
+              kitchen: {
+                ["gold spoons"]: "900",
+                piano: "550",
+                notes: "ga0r76ba22g4e"
+              },
+              cellar: {
+                reminder: "dog",
+                bottle: "750"
+              }
+            },
+            {
+              kitchen: {
+                ["gold spoons"]: 900,
+                piano: 550
+              },
+              cellar: {
+                bottle: 750
+              }
+            }
+          ]
+        ];
+
+        test.each(data)("findAndRemove(%o) = %o", (obj, result) => {
+          let actual = findAndRemove(obj);
+
+          expect(actual).toEqual(result);
+        });
       });
     });
   });

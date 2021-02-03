@@ -348,6 +348,32 @@ const signAll = (obj, name) => {
   return obj;
 };
 
+// Part 23
+// Problem# 147
+// The insurance guy calls. They were about to pay you all that fortune you've been anxiously waiting for,
+// but they detected further irregularities; the list of stolen items is misformatted and appears to contain other
+// entries that don't belong there. Find and remove them.
+// You receive an object with nested objects with strings as values. Convert their values to number and return an object
+// without the entries that evaluate to NaN.
+// https://edabit.com/challenge/MregZPPJWSxhXtrNB
+
+const findAndRemove = (obj) =>
+  Object.entries(obj).reduce((acc, curr) => {
+    const [room, items] = curr;
+
+    const itemsList = {};
+
+    Object.entries(items).forEach(([key, value]) => {
+      if (!Number.isNaN(Number(value))) {
+        itemsList[key] = Number(value);
+      }
+    });
+
+    acc[room] = itemsList;
+
+    return acc;
+  }, {});
+
 module.exports = {
   stolenItems,
   mostExpensiveItem,
@@ -370,5 +396,6 @@ module.exports = {
   preventChanges,
   signYourName,
   signAgain,
-  signAll
+  signAll,
+  findAndRemove
 };

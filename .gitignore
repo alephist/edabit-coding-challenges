@@ -6,3 +6,7 @@ CSharp/obj
 # Javascript folder
 js/node_modules/
 js/package-lock.json
+
+# Python folder
+python/__pycache__
+python/test/__pycache__

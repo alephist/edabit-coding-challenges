@@ -6,4 +6,4 @@ List of solved coding challeneges from the coding challenge site [Edabit](https:
 | :--------: | :----------: |
 |     C#     |      89      |
 | Javascript |     312      |
-|   Python   |     135      |
+|   Python   |     136      |

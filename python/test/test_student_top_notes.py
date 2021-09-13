@@ -1,0 +1,77 @@
+import unittest
+
+from typing import Dict, List, Tuple
+
+from student_top_notes import get_student_top_notes
+
+test_values: Tuple[Tuple[List[Dict], List[int]]] = (
+    ([{"id": 1, "name": "Jacek", "notes": [5, 3, 4, 2, 5, 5]}, {"id": 2, "name": "Ewa", "notes": [2, 3, 3, 3, 2, 5]},
+      {"id": 3, "name": "Zygmunt", "notes": [2, 2, 4, 4, 3, 3]}], [5, 5, 4]),
+    ([{'id': 1, 'name': 'Rochelle', 'notes': [0, 0, 3, 3, 5]}, {'id': 2, 'name': 'Robert', 'notes': []}, {'id': 3, 'name': 'Hans', 'notes': [2, 4, 5]}, {'id': 4, 'name': 'Joel', 'notes': [2, 5]}, {'id': 5, 'name': 'Eric', 'notes': [3, 5]}, {'id': 6, 'name': 'Cary',
+     'notes': [1, 2, 0, 0]}, {'id': 7, 'name': 'Cary', 'notes': [3, 2, 1]}, {'id': 8, 'name': 'Dennis', 'notes': [0, 0, 4]}, {'id': 9, 'name': 'Lexi', 'notes': [0, 1, 2, 1, 5]}, {'id': 10, 'name': 'Alfie', 'notes': [0, 1, 3, 4, 3]}], [5, 0, 5, 5, 5, 2, 3, 4, 5, 4]),
+    ([{'id': 1, 'name': 'Max', 'notes': [1, 5]}, {'id': 2, 'name': 'Cary', 'notes': [0, 5]}, {'id': 3, 'name': 'Lexi', 'notes': [2, 0]}, {'id': 4, 'name': 'Joshua', 'notes': [1, 2, 2]}, {
+     'id': 5, 'name': 'Hans', 'notes': [3, 4, 0, 5, 1]}, {'id': 6, 'name': 'Alfie', 'notes': [0, 0, 2, 1, 5]}, {'id': 7, 'name': 'Ralph', 'notes': [4, 3, 1, 1, 1]}], [5, 5, 2, 2, 5, 5, 4]),
+    ([{'id': 1, 'name': 'Dennis', 'notes': [0, 4, 3, 4, 5]}, {'id': 2, 'name': 'Rudolf', 'notes': [3, 1]}, {'id': 3, 'name': 'Rudolf', 'notes': [2, 4, 4, 5]}, {'id': 4, 'name': 'Dennis', 'notes': [2, 5]}, {'id': 5,
+     'name': 'Rochelle', 'notes': [5, 5, 4]}, {'id': 6, 'name': 'John', 'notes': [4]}, {'id': 7, 'name': 'Julius', 'notes': [2, 1, 4, 4]}, {'id': 8, 'name': 'Cary', 'notes': [0, 2, 4, 1, 1]}], [5, 3, 5, 5, 5, 4, 4, 4]),
+    ([{'id': 1, 'name': 'Ralph', 'notes': [3, 5, 5, 4, 2]}, {'id': 2, 'name': 'Joel', 'notes': []}, {'id': 3, 'name': 'Cary', 'notes': [0, 5, 0, 4]}, {'id': 4, 'name': 'Noel', 'notes': [0, 1, 0, 0]}, {
+     'id': 5, 'name': 'Eric', 'notes': [4, 0]}, {'id': 6, 'name': 'Joe', 'notes': [4, 3]}, {'id': 7, 'name': 'Lexi', 'notes': [1, 3, 0, 5]}, {'id': 8, 'name': 'Max', 'notes': []}], [5, 0, 5, 1, 4, 4, 5, 0]),
+    ([{'id': 1, 'name': 'Alfie', 'notes': [0, 0]}, {'id': 2, 'name': 'Joshua', 'notes': [3, 4]}, {'id': 3, 'name': 'Alfie', 'notes': [5, 5]}, {'id': 4, 'name': 'Joe', 'notes': [4, 1]}, {'id': 5, 'name': 'Ralph', 'notes': [1, 1, 1]}, {'id': 6, 'name': 'Rochelle', 'notes': [1]}, {'id': 7, 'name': 'Robert',
+     'notes': [1, 3]}, {'id': 8, 'name': 'Cary', 'notes': [0, 2, 5, 2]}, {'id': 9, 'name': 'Rochelle', 'notes': [1, 5, 4, 3, 2]}, {'id': 10, 'name': 'Eric', 'notes': [4, 4, 5, 1]}, {'id': 11, 'name': 'Hans', 'notes': [1, 4, 3]}, {'id': 12, 'name': 'John', 'notes': [1]}], [0, 4, 5, 4, 1, 1, 3, 5, 5, 5, 4, 1]),
+    ([{'id': 1, 'name': 'Hans', 'notes': [4, 1, 0]}, {'id': 2, 'name': 'Dennis', 'notes': []}, {'id': 3, 'name': 'Rochelle', 'notes': [2, 2, 3, 3]}, {'id': 4,
+     'name': 'Jenny', 'notes': [3]}, {'id': 5, 'name': 'Cary', 'notes': [1, 5, 2]}, {'id': 6, 'name': 'Joshua', 'notes': [3, 4, 1, 3, 5]}], [4, 0, 3, 3, 5, 5]),
+    ([{'id': 1, 'name': 'Robert', 'notes': [5, 0]}, {'id': 2, 'name': 'Rochelle', 'notes': [5, 0, 2, 5, 0]}, {'id': 3, 'name': 'Noel', 'notes': []}, {'id': 4, 'name': 'Max', 'notes': [0, 5, 5, 2]}, {'id': 5, 'name': 'Alfie', 'notes': []}, {'id': 6, 'name': 'Ralph', 'notes': [3, 5, 4, 1, 3]}, {'id': 7, 'name': 'Robert', 'notes': [3, 3, 5]}, {
+     'id': 8, 'name': 'Robert', 'notes': [0, 3]}, {'id': 9, 'name': 'Ralph', 'notes': [2, 4, 0, 5, 4]}, {'id': 10, 'name': 'Joel', 'notes': []}, {'id': 11, 'name': 'Joshua', 'notes': [5, 0, 3]}, {'id': 12, 'name': 'Alfie', 'notes': [0, 4]}, {'id': 13, 'name': 'Max', 'notes': [0, 0, 2, 2]}], [5, 5, 0, 5, 0, 5, 5, 3, 5, 0, 5, 4, 2]),
+    ([{'id': 1, 'name': 'Joel', 'notes': [5, 0, 0, 3, 1]}, {'id': 2, 'name': 'Alfie', 'notes': [3, 4, 1, 0, 3]}, {'id': 3, 'name': 'Eric', 'notes': []}, {'id': 4, 'name': 'Lexi', 'notes': [4]}, {'id': 5, 'name': 'Max', 'notes': []}, {'id': 6, 'name': 'Ralph', 'notes': [2]}, {'id': 7, 'name': 'Max', 'notes': [1, 3]}, {'id': 8, 'name': 'Hans', 'notes': [2, 0, 2]}, {'id': 9, 'name': 'Hans', 'notes': [0, 2, 3]}, {'id': 10,
+     'name': 'Jenny', 'notes': [4, 4, 2, 2]}, {'id': 11, 'name': 'Max', 'notes': []}, {'id': 12, 'name': 'Rochelle', 'notes': [1, 2, 2, 3, 2]}, {'id': 13, 'name': 'Cary', 'notes': [4, 1]}, {'id': 14, 'name': 'Jenny', 'notes': [5, 5]}, {'id': 15, 'name': 'Jenny', 'notes': []}, {'id': 16, 'name': 'Rudolf', 'notes': [0, 5, 1, 1]}, {'id': 17, 'name': 'Julius', 'notes': [4, 0]}], [5, 4, 0, 4, 0, 2, 3, 2, 3, 4, 0, 3, 4, 5, 0, 5, 4]),
+    ([{'id': 1, 'name': 'John', 'notes': []}, {'id': 2, 'name': 'Jenny', 'notes': [0, 1, 4]}, {'id': 3,
+     'name': 'Robert', 'notes': [5, 0, 3, 1]}, {'id': 4, 'name': 'Ralph', 'notes': [5, 0, 5]}], [0, 4, 5, 5]),
+    ([{'id': 1, 'name': 'John', 'notes': [5]}, {'id': 2, 'name': 'Robert', 'notes': [1, 5, 5, 5, 5]}, {'id': 3, 'name': 'John', 'notes': []}, {'id': 4, 'name': 'Hans', 'notes': [1]}, {'id': 5, 'name': 'Hans', 'notes': [0, 5]}, {'id': 6, 'name': 'Joshua', 'notes': [1, 0, 3, 0]}, {'id': 7, 'name': 'Robert', 'notes': [
+     5, 4, 5]}, {'id': 8, 'name': 'Cary', 'notes': []}, {'id': 9, 'name': 'John', 'notes': [0, 4, 0, 3, 5]}, {'id': 10, 'name': 'Max', 'notes': [2]}, {'id': 11, 'name': 'Hans', 'notes': []}, {'id': 12, 'name': 'Dennis', 'notes': []}, {'id': 13, 'name': 'Dennis', 'notes': []}], [5, 5, 0, 1, 5, 3, 5, 0, 5, 2, 0, 0, 0]),
+    ([{'id': 1, 'name': 'Eric', 'notes': [1, 0, 4, 3]}, {'id': 2, 'name': 'Hans', 'notes': [0]}, {'id': 3, 'name': 'Ralph', 'notes': [0]}, {'id': 4, 'name': 'John', 'notes': []}, {'id': 5, 'name': 'Noel', 'notes': [0, 4]}, {'id': 6, 'name': 'Dennis', 'notes': [5, 2, 0, 3, 0]}, {'id': 7,
+     'name': 'Dennis', 'notes': []}, {'id': 8, 'name': 'Hans', 'notes': [3, 4, 3]}, {'id': 9, 'name': 'Lexi', 'notes': []}, {'id': 10, 'name': 'Alfie', 'notes': [5, 4, 1, 2]}, {'id': 11, 'name': 'Noel', 'notes': []}, {'id': 12, 'name': 'Hans', 'notes': [2, 5, 2]}], [4, 0, 0, 0, 4, 5, 0, 4, 0, 5, 0, 5]),
+    ([{'id': 1, 'name': 'Cary', 'notes': [0, 0, 5]}, {'id': 2, 'name': 'Dennis', 'notes': [0, 0, 2]}, {'id': 3, 'name': 'Cary', 'notes': [1, 0]}, {'id': 4, 'name': 'Dennis', 'notes': [1]}, {'id': 5, 'name': 'Cary', 'notes': []}, {'id': 6, 'name': 'Alfie', 'notes': [5]}, {'id': 7, 'name': 'Jenny', 'notes': [4]}, {'id': 8, 'name': 'Rudolf', 'notes': [4, 1, 2, 3]}, {'id': 9, 'name': 'Cary',
+     'notes': []}, {'id': 10, 'name': 'Rudolf', 'notes': [2, 4, 3]}, {'id': 11, 'name': 'Joel', 'notes': []}, {'id': 12, 'name': 'Ralph', 'notes': [5, 3]}, {'id': 13, 'name': 'Hans', 'notes': [3]}, {'id': 14, 'name': 'Lexi', 'notes': [4, 2, 4]}, {'id': 15, 'name': 'John', 'notes': [2, 1, 0, 2, 4]}, {'id': 16, 'name': 'Rudolf', 'notes': []}], [5, 2, 1, 1, 0, 5, 4, 4, 0, 4, 0, 5, 3, 4, 4, 0]),
+    ([{'id': 1, 'name': 'Max', 'notes': [1, 2, 2]}, {'id': 2, 'name': 'Noel', 'notes': [3, 2, 4, 5, 3]}, {'id': 3, 'name': 'Joe', 'notes': [
+     3, 5, 1, 1]}, {'id': 4, 'name': 'Joel', 'notes': [1, 4]}, {'id': 5, 'name': 'Robert', 'notes': [1, 2, 5, 5]}], [2, 5, 5, 4, 5]),
+    ([{'id': 1, 'name': 'Robert', 'notes': [5]}, {'id': 2, 'name': 'John', 'notes': [1]}, {'id': 3, 'name': 'Max', 'notes': []}, {'id': 4, 'name': 'Jenny', 'notes': [0, 0, 0]}, {
+     'id': 5, 'name': 'Dennis', 'notes': [0, 5, 5]}, {'id': 6, 'name': 'Dennis', 'notes': [2, 0, 3, 2]}, {'id': 7, 'name': 'Rochelle', 'notes': [5, 2, 1, 2, 2]}], [5, 1, 0, 0, 5, 3, 5]),
+    ([{'id': 1, 'name': 'Robert', 'notes': [3]}, {'id': 2, 'name': 'Eric', 'notes': [2, 3, 1]}, {'id': 3, 'name': 'Joel', 'notes': [1, 2, 0]}, {'id': 4, 'name': 'Joshua', 'notes': [4, 2]}, {'id': 5, 'name': 'Lexi', 'notes': [5, 2, 1]}, {'id': 6, 'name': 'John', 'notes': [4, 0, 3]}, {'id': 7, 'name': 'Rochelle', 'notes': [4, 2, 1, 2]}, {
+        'id': 8, 'name': 'Rochelle', 'notes': [1, 4, 5, 3]}, {'id': 9, 'name': 'Rudolf', 'notes': [5, 5, 3, 4, 2]}, {'id': 10, 'name': 'Jenny', 'notes': [4, 5]}, {'id': 11, 'name': 'Joe', 'notes': [0, 0]}, {'id': 12, 'name': 'Robert', 'notes': [4, 5, 5, 4, 2]}, {'id': 13, 'name': 'John', 'notes': [1]}], [3, 3, 2, 4, 5, 4, 4, 5, 5, 5, 0, 5, 1]),
+    ([{'id': 1, 'name': 'Lexi', 'notes': []}, {'id': 2, 'name': 'Julius', 'notes': []}, {'id': 3, 'name': 'Joe', 'notes': []}, {'id': 4, 'name': 'Rochelle', 'notes': [3, 4, 2]}, {
+        'id': 5, 'name': 'Dennis', 'notes': [3]}, {'id': 6, 'name': 'Julius', 'notes': [5, 3, 3, 3]}, {'id': 7, 'name': 'Cary', 'notes': [5, 1, 4, 4]}], [0, 0, 0, 4, 3, 5, 5]),
+    ([{'id': 1, 'name': 'Ralph', 'notes': [4, 5, 1]}, {'id': 2, 'name': 'Cary', 'notes': [3, 2, 1, 4]}, {'id': 3, 'name': 'Rochelle', 'notes': [4]}, {'id': 4, 'name': 'Noel', 'notes': [5]}, {'id': 5, 'name': 'Joe', 'notes': []}], [5, 4, 4, 5, 0]),)
+([], []),
+([{'id': 1, 'name': 'Alfie', 'notes': []}, {'id': 2, 'name': 'Hans', 'notes': [1, 3, 1, 2, 0]}, {'id': 3, 'name': 'Alfie', 'notes': [
+    3, 4, 5, 1, 2]}, {'id': 4, 'name': 'Hans', 'notes': [1, 1]}, {'id': 5, 'name': 'Hans', 'notes': [3, 3, 2, 4, 0]}], [0, 3, 5, 1, 4]),
+([{'id': 1, 'name': 'Rudolf', 'notes': [0, 3, 3, 0, 2]}, {'id': 2, 'name': 'Rochelle', 'notes': [0, 4, 2, 0]}, {'id': 3, 'name': 'Lexi', 'notes': [5, 0, 2, 3, 0]}, {'id': 4, 'name': 'Max', 'notes': [1, 2, 2, 4]}, {
+    'id': 5, 'name': 'Rochelle', 'notes': [1]}, {'id': 6, 'name': 'Hans', 'notes': [1]}, {'id': 7, 'name': 'Robert', 'notes': [1, 3]}, {'id': 8, 'name': 'Noel', 'notes': [3, 3, 4, 5]}], [3, 4, 5, 4, 1, 1, 3, 5]),
+([{'id': 1, 'name': 'Jenny', 'notes': [3, 1, 0]}, {'id': 2, 'name': 'Max', 'notes': []}, {'id': 3, 'name': 'Alfie', 'notes': [2]}, {'id': 4, 'name': 'Lexi', 'notes': []}, {'id': 5, 'name': 'John', 'notes': [1, 5, 4, 1]}, {'id': 6, 'name': 'Noel', 'notes': []}, {'id': 7, 'name': 'Hans', 'notes': [1, 4]}, {'id': 8, 'name': 'Ralph', 'notes': []}, {'id': 9, 'name': 'John', 'notes': []}, {
+    'id': 10, 'name': 'Cary', 'notes': [0, 1, 4, 1]}, {'id': 11, 'name': 'Rochelle', 'notes': [4, 5, 2, 3, 3]}, {'id': 12, 'name': 'Dennis', 'notes': [2]}, {'id': 13, 'name': 'Alfie', 'notes': [5, 0, 5, 3, 0]}, {'id': 14, 'name': 'Joel', 'notes': []}, {'id': 15, 'name': 'Rudolf', 'notes': [5]}, {'id': 16, 'name': 'Noel', 'notes': [2, 1, 1, 3, 1]}], [3, 0, 2, 0, 5, 0, 4, 0, 0, 4, 5, 2, 5, 0, 5, 3]),
+([{'id': 1, 'name': 'Noel', 'notes': [3, 3, 5, 3, 2]}, {'id': 2, 'name': 'Robert', 'notes': [5, 3]}, {'id': 3, 'name': 'Julius', 'notes': []}, {'id': 4, 'name': 'Julius', 'notes': [0, 2, 1]}, {'id': 5, 'name': 'Ralph', 'notes': [2, 3, 5, 4]}, {'id': 6, 'name': 'Joel', 'notes': []}, {
+    'id': 7, 'name': 'Rochelle', 'notes': [0, 2]}, {'id': 8, 'name': 'Jenny', 'notes': [3, 0, 1]}, {'id': 9, 'name': 'Julius', 'notes': [3]}, {'id': 10, 'name': 'Hans', 'notes': [5, 3, 5, 2]}, {'id': 11, 'name': 'John', 'notes': []}], [5, 5, 0, 2, 5, 0, 2, 3, 3, 5, 0]),
+([{'id': 1, 'name': 'Alfie', 'notes': [0]}, {'id': 2, 'name': 'Cary', 'notes': []}, {'id': 3, 'name': 'Rudolf', 'notes': [3, 0, 0, 0, 1]}, {
+    'id': 4, 'name': 'Cary', 'notes': [5, 0]}, {'id': 5, 'name': 'Hans', 'notes': [4, 4]}, {'id': 6, 'name': 'Eric', 'notes': [1, 4]}], [0, 0, 3, 5, 4, 4]),
+([{'id': 1, 'name': 'Joel', 'notes': [2, 5, 2, 2, 3]}, {'id': 2, 'name': 'Joel', 'notes': [1, 0]}, {'id': 3, 'name': 'Julius', 'notes': []}, {'id': 4, 'name': 'Noel', 'notes': [1, 4, 3]}, {'id': 5, 'name': 'Alfie', 'notes': [4, 1]}, {'id': 6, 'name': 'Jenny', 'notes': []}, {'id': 7, 'name': 'Hans',
+                                                                                                                                                                                                                                                                                   'notes': [0, 0]}, {'id': 8, 'name': 'Robert', 'notes': [0, 2]}, {'id': 9, 'name': 'Lexi', 'notes': []}, {'id': 10, 'name': 'John', 'notes': [0, 4, 0, 2, 0]}, {'id': 11, 'name': 'Lexi', 'notes': [3, 1, 4, 1]}, {'id': 12, 'name': 'Robert', 'notes': [4, 2, 5, 0, 4]}], [5, 1, 0, 4, 4, 0, 0, 2, 0, 4, 4, 5]),
+([{'id': 1, 'name': 'Rudolf', 'notes': [3]}, {'id': 2, 'name': 'Ralph', 'notes': [2, 3, 0]}, {'id': 3,
+                                                                                              'name': 'Jenny', 'notes': [3, 0, 3, 2, 4]}, {'id': 4, 'name': 'Alfie', 'notes': [0, 5, 3]}], [3, 3, 4, 5]),
+([{'id': 1, 'name': 'Ralph', 'notes': [0, 1]}, {'id': 2, 'name': 'Joshua', 'notes': [3, 2, 5]}, {'id': 3, 'name': 'Noel', 'notes': [3, 0, 5, 0, 2]}, {'id': 4, 'name': 'Lexi', 'notes': [4, 1]}, {'id': 5, 'name': 'Joel', 'notes': [3, 0]}, {'id': 6, 'name': 'John', 'notes': [1, 2, 3, 2, 0]}, {'id': 7, 'name': 'Max', 'notes': [2]}, {'id': 8, 'name': 'Hans', 'notes': [2, 1, 1, 0, 5]}, {'id': 9, 'name': 'Joel',
+                                                                                                                                                                                                                                                                                                                                                                                                'notes': []}, {'id': 10, 'name': 'John', 'notes': [2, 3]}, {'id': 11, 'name': 'Lexi', 'notes': []}, {'id': 12, 'name': 'Dennis', 'notes': []}, {'id': 13, 'name': 'Max', 'notes': [4, 4, 1, 3]}, {'id': 14, 'name': 'John', 'notes': [4]}, {'id': 15, 'name': 'Julius', 'notes': [1, 1, 1, 5, 1]}, {'id': 16, 'name': 'Hans', 'notes': [4, 3, 1, 4]}], [1, 5, 5, 4, 3, 3, 2, 5, 0, 3, 0, 0, 4, 4, 5, 4]),
+([{'id': 1, 'name': 'Eric', 'notes': [2, 1, 4, 5]}, {'id': 2, 'name': 'Hans', 'notes': [0, 5, 4, 2, 3]}, {'id': 3, 'name': 'John', 'notes': []}, {'id': 4, 'name': 'Alfie', 'notes': [4, 5]}, {'id': 5, 'name': 'Hans', 'notes': [2]}, {'id': 6, 'name': 'Lexi', 'notes': [5, 2, 2, 4, 2]}, {'id': 7, 'name': 'Lexi', 'notes': [2, 4, 5, 3, 1]}, {'id': 8, 'name': 'Joel', 'notes': []}, {'id': 9,
+ 'name': 'Dennis', 'notes': [5, 0, 1, 2]}, {'id': 10, 'name': 'Joel', 'notes': [1, 1, 2, 2]}, {'id': 11, 'name': 'Joshua', 'notes': [0, 1, 4, 2, 1]}, {'id': 12, 'name': 'Cary', 'notes': [4, 1, 4, 2]}, {'id': 13, 'name': 'Eric', 'notes': [4, 1, 5, 4]}, {'id': 14, 'name': 'Ralph', 'notes': [1, 4, 3]}, {'id': 15, 'name': 'Dennis', 'notes': []}], [5, 5, 0, 5, 2, 5, 5, 0, 5, 2, 4, 4, 5, 4, 0]),
+([{'id': 1, 'name': 'John', 'notes': [5, 1, 0, 0, 2]}, {'id': 2, 'name': 'Alfie', 'notes': []}, {'id': 3, 'name': 'Rudolf', 'notes': [4, 2]}, {'id': 4, 'name': 'Cary', 'notes': []}, {'id': 5, 'name': 'Max', 'notes': []}, {'id': 6, 'name': 'Julius', 'notes': []}, {'id': 7, 'name': 'Julius', 'notes': [5, 0, 5, 2, 1]}, {
+    'id': 8, 'name': 'Dennis', 'notes': [0, 0, 1, 4, 1]}, {'id': 9, 'name': 'John', 'notes': []}, {'id': 10, 'name': 'Noel', 'notes': [5]}, {'id': 11, 'name': 'Joel', 'notes': [1, 0, 0]}, {'id': 12, 'name': 'Lexi', 'notes': [5, 1, 1, 3]}, {'id': 13, 'name': 'Cary', 'notes': [2, 0, 1, 2, 1]}], [5, 0, 4, 0, 0, 0, 5, 4, 0, 5, 1, 5, 2]),
+([{'id': 1, 'name': 'Robert', 'notes': []}, {'id': 2, 'name': 'Dennis', 'notes': [
+    5, 0, 0]}, {'id': 3, 'name': 'Max', 'notes': [3, 2, 0, 2, 5]}], [0, 5, 5])
+
+
+class StudentTopNotesTestCase(unittest.TestCase):
+    def test_return_list_of_top_notes_for_each_student(self):
+        for students, expected_list in test_values:
+            with self.subTest():
+                self.assertEqual(get_student_top_notes(
+                    students), expected_list)
+
+
+if __name__ == '__main__':
+    unittest.main()
